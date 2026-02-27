@@ -12,9 +12,6 @@
 
 QueueHandle_t buttonQueue;
 
-/* =========================
-   ISR DEL BOTÓN
-   ========================= */
 static void IRAM_ATTR button_isr_handler(void* arg)
 {
     BaseType_t xHigherPriorityTaskWoken = pdFALSE;
@@ -28,9 +25,6 @@ static void IRAM_ATTR button_isr_handler(void* arg)
     }
 }
 
-/* =========================
-   CONFIGURACIÓN GPIO
-   ========================= */
 void gpio_init(void)
 {
     // LED salida
@@ -57,9 +51,6 @@ void gpio_init(void)
     gpio_isr_handler_add(BUTTON_GPIO, button_isr_handler, NULL);
 }
 
-/* =========================
-   TAREA LED
-   ========================= */
 void taskLed(void *pvParameters)
 {
     int received;
@@ -80,9 +71,6 @@ void taskLed(void *pvParameters)
     }
 }
 
-/* =========================
-   APP MAIN
-   ========================= */
 void app_main(void)
 {
     gpio_init();
